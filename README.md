@@ -1,3 +1,9 @@
+# Sobre
+Projeto de estudos com várias tarefas desenvolvidas e seus respectivos protótipos
+
+Todo-List [protótipo](https://www.figma.com/file/67wuu1jRdskQC8FN1lPpIh/My-Todo-List-(Copy)?node-id=0%3A1)
+
+
 # MyFirstProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
