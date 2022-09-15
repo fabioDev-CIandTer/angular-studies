@@ -1,0 +1,48 @@
+:host{
+    flex:1;
+    margin: 15px 0 0 0;
+    min-height: 500px;
+    border-radius: 5px;    
+}
+
+div, ul{
+    background: #FFFFFF;
+}
+
+li{
+    list-style: none;
+}
+
+
+div{
+    min-height: 220px;
+    max-height: 800px;
+    overflow-y: scroll;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+div.empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f100;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #939CBD;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #AF7EEB;
+  }

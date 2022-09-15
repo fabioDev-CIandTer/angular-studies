@@ -1,0 +1,15 @@
+<div [ngClass]="todos.length ? '' : 'empty' " >
+    <img *ngIf="!todos.length; else listBlock" src="assets/todo-list-background.png" alt="">
+    <ng-template #listBlock>
+        <ul >
+            <li *ngFor="let todo of todos;let i = index" >
+                <app-task [taskItem]="{name:todo, index:i}" 
+                    (deleteTaskEmitter)="removeTaskFromList($event)"
+                    (taskDoneEmitter)="replaceTaskPosition($event)"></app-task>
+            </li>
+        </ul>
+    </ng-template>
+</div>
+
+<app-input-task (taskAdicionadaEmitter)="addTaskToList($event)" ></app-input-task>
+<app-delete-all *ngIf="todos.length" (deleteAllEmitter)="deleteAll($event)"  ></app-delete-all>

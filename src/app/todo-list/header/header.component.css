@@ -1,0 +1,14 @@
+div.header-title{
+    background-color: #AF7EEB;
+    flex:1;
+    font-family: 'arial';
+    font-weight: 700;
+    font-size: 18px;
+    max-height: 50px;
+    color: #FFFFFF;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

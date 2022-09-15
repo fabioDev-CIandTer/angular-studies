@@ -1,0 +1,5 @@
+<div>
+    <input type="checkbox" name="" id={{taskItem.index}} (click)="taskDone($event)">
+    <p>{{ taskItem.name }}</p>
+    <mat-icon class="lixeira" (click)="deleteTask(taskItem.index)">delete_forever</mat-icon>
+</div>
