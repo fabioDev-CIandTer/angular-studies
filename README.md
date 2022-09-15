@@ -5,8 +5,8 @@ Todo-List [protótipo](https://www.figma.com/file/67wuu1jRdskQC8FN1lPpIh/My-Todo
 
 
 
-
-This projects was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
+## Cli info
+This projects are generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
 
 ## Development server
 
