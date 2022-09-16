@@ -23,6 +23,9 @@
     position: absolute;
     margin-left: 10px;
     cursor: pointer;
+
+    box-shadow: 16px 9px 13px -2px rgb(213 142 142 / 35%);
+    border-radius: 100%;
 }
 
 ul{
@@ -51,6 +54,7 @@ li a{
 
 .mat-icon.open{
     transform: rotate(180deg);
+    box-shadow: -11px -4px 16px -2px rgb(213 142 142 / 35%);
 }
 
 .mat-icon.close{
