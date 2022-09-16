@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon'
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { TaskListComponent } from './task-list/task-list.component';
@@ -8,6 +7,7 @@ import { InputTaskComponent } from './input-add-task/input-task.component';
 import { TodoListComponent } from './todo-list.component';
 import { FormsModule } from '@angular/forms';
 import { DeleteAllComponent } from './delete-all/delete-all.component';
+import { AngularMaterialModule } from '../angular-material/angular-material.module';
 
 
 
@@ -23,7 +23,7 @@ import { DeleteAllComponent } from './delete-all/delete-all.component';
   imports: [
     CommonModule,
     FormsModule,
-    MatIconModule
+    AngularMaterialModule
   ],
   exports: [
     TodoListComponent,
