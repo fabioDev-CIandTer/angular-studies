@@ -8,16 +8,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { TodoListModule } from './todo-list/todo-list.module';
 import { HomeComponent } from './home/home.component';
+import { PokemonComponent } from './pokemon/pokemon.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    PokemonComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     TodoListModule,
     BrowserAnimationsModule,
     AngularMaterialModule
