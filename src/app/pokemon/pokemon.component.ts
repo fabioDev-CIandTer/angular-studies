@@ -1,5 +1,8 @@
+import { Component, Input, OnInit } from '@angular/core';
+
 import { PokemonService } from './pokemon.service';
-import { Component, OnInit } from '@angular/core';
+import { RawPokemonModel } from './card/pokemon-model';
+import { ThisReceiver } from '@angular/compiler';
 
 
 @Component({
@@ -9,13 +12,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonComponent implements OnInit {
 
+  @Input() pokemonsList:Array<RawPokemonModel>=[];
+
   constructor(private service:PokemonService){}
 
   ngOnInit(): void {
     this.service.apiListAllPokemons.subscribe({
-      next: (v) => console.log(v),
+      next: (v) => {
+        console.log(v)
+        this.pokemonsList = v.results
+      },
       error: (e) => console.error(e),
-      complete: () => console.info('complete') 
+      complete: () => console.info(this.pokemonsList) 
     });
   }
 

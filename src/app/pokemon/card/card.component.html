@@ -1,0 +1,13 @@
+<div class="card-container flex-horizontal">
+    <div class="card-info flex-vertical">
+        <h2>{{this.pokemon.name}}</h2>
+        <ul>
+            <li *ngFor="let type of this.pokemon.types" >
+                {{type.type.name}}
+            </li>
+        </ul>
+    </div>
+    <div class="card-img">
+        <img [src]="this.pokemon.img" alt="">
+    </div>
+</div>

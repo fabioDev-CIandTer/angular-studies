@@ -1,1 +1,8 @@
-<p>pokemon works!</p>
+<div class="flex-vertical">
+    <div class="flex-horizontal title-container">
+        <img src="assets/images/Logo.png" alt="">
+        <h1>Pokedex</h1>
+    </div>
+    <app-search-pokemon></app-search-pokemon>
+    <app-list [pokemons]="this.pokemonsList"></app-list>
+</div>

@@ -20,14 +20,13 @@ export class PokemonService {
         tap(res=>res),
         tap((res:any) =>{
           res.results.map((resPokemons:any)=>{
-
-            return this.httpClient.get(resPokemons.url).pipe(
-              map(
-                res=>res
-              )
-            ).subscribe( res=> resPokemons.status = res)
-          })
+              this.getDetailsPokemon(resPokemons.url).subscribe( res=> resPokemons.status = res)
+          });
         })
       )
+  }
+
+  getDetailsPokemon(url:string):Observable<any>{
+    return this.httpClient.get(url).pipe( map( res=>res ) );
   }
 }

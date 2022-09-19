@@ -36,6 +36,10 @@ ul{
     font-size: large;
 }
 
+li{
+    margin-top: 10px;
+}
+
 li a{
     font-family: 'Roboto';
     font-weight: 700;
@@ -81,5 +85,3 @@ li a{
     animation-iteration-count: infinite;
     animation-delay: 0.1s;
 }
-
-

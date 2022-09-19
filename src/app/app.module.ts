@@ -1,3 +1,4 @@
+import { PokemonModule } from './pokemon/pokemon.module';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,9 +23,11 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TodoListModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    
+    TodoListModule,
+    PokemonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

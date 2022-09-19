@@ -1,5 +1,5 @@
 <div [ngClass]="todos.length ? '' : 'empty' " >
-    <img *ngIf="!todos.length; else listBlock" src="assets/todo-list-background.png" alt="">
+    <img *ngIf="!todos.length; else listBlock" src="assets/images/todo-list-background.png" alt="">
     <ng-template #listBlock>
         <ul >
             <li *ngFor="let todo of todos;let i = index" >

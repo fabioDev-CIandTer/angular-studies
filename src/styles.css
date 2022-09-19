@@ -1,3 +1,18 @@
 
 html, body { height: 100%; }
 body { margin: 0; }
+
+:root{
+    --pokemon-primary-color:#262835;
+    --pokemon-secundary-color:#FF5473;
+}
+
+.flex-horizontal{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.flex-vertical{
+    display: flex;
+    flex-flow: column wrap;
+}
