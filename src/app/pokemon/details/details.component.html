@@ -1,0 +1,29 @@
+<div class="container flex-vertical">
+    <div class="names-container flex-vertical">
+        <h1>{{ this.pokemonDetails?.detail?.name }}</h1>
+        <h1>{{ this.pokemonDetails?.detailSpecies?.names[0].name }}</h1>
+    </div>
+    <div class="card-detail-wrapper flex-vertical">
+        <div class="card-detail flex-vertical">
+            <div class="img-wrapper">
+                <img appPokemonDetailImg
+                    data-detailImages="this.pokemonDetails?.detail?.sprites"
+                    [id]="this.pokemonDetails?.detail?.id" 
+                    [src]="this.pokemonDetails?.detail?.sprites.other.dream_world.front_default" 
+                    [alt]="this.pokemonDetails?.detail?.name">
+            </div>
+        </div>
+        <div class="pokemon-data">
+            <h1>Estatísticas</h1>
+            <ul>
+                <li *ngFor="let stats of this.pokemonDetails?.detail?.stats" class="flex-horizontal">
+                    {{ stats.stat.name}}
+                    <strong> {{ stats.base_stat}} </strong>
+                </li>
+            </ul>
+        </div>
+        <div class="voltar">
+            <a [routerLink]="['/pokemon']">Voltar</a>
+        </div>
+    </div>
+</div>

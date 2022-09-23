@@ -1,9 +1,11 @@
+import { RouterModule } from '@angular/router';
 import { AngularMaterialModule } from './../angular-material/angular-material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListComponent } from './list/list.component';
 import { SearchPokemonComponent } from './search-pokemon/search-pokemon.component';
 import { CardComponent } from './card/card.component';
+import { DetailsComponent } from './details/details.component';
 
 
 
@@ -11,16 +13,20 @@ import { CardComponent } from './card/card.component';
   declarations: [
     ListComponent,
     SearchPokemonComponent,
-    CardComponent
+    CardComponent,
+    DetailsComponent,
+    
   ],
   imports: [
     CommonModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    RouterModule
   ],
   exports:[
     ListComponent,
     SearchPokemonComponent,
-    CardComponent
+    CardComponent,
+    DetailsComponent
   ]
 })
 export class PokemonModule { }

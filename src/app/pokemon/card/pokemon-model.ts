@@ -1,4 +1,5 @@
 export interface PokemonModel {
+    id:string,
     name:string,
     img:string,
     types:Array<{slot:number, type:{name:string, url:string}}>,
@@ -6,5 +7,6 @@ export interface PokemonModel {
 
 export interface RawPokemonModel{
     name:string,
-    status:any
+    status:any,
+    url:string
 }

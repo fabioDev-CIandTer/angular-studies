@@ -85,3 +85,8 @@ li a{
     animation-iteration-count: infinite;
     animation-delay: 0.1s;
 }
+
+
+a.active{
+    border-bottom: 2px solid var(--pokemon-secundary-color);
+}

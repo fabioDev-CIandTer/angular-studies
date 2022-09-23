@@ -2,7 +2,10 @@
     <ul>
         <li *ngFor="let pokemon of pokemons" >
             <app-card 
-                [pokemon]="{name:pokemon.name, img:pokemon.status?.sprites?.other.dream_world.front_default, types:pokemon.status?.types}">
+                [pokemon]="{id:pokemon?.status?.id, 
+                            name:pokemon.name, 
+                            img:pokemon.status?.sprites?.other.dream_world.front_default, 
+                            types:pokemon.status?.types}">
             </app-card>
         </li>
     </ul>

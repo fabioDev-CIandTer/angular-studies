@@ -1,5 +1,7 @@
-import { RawPokemonModel } from './../card/pokemon-model';
 import { Component, Input, OnInit } from '@angular/core';
+
+import { PokemonService } from '../pokemon.service';
+import { RawPokemonModel } from './../card/pokemon-model';
 
 @Component({
   selector: 'app-list',
@@ -9,8 +11,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ListComponent implements OnInit {
 
   @Input() pokemons:Array<RawPokemonModel>=[];
+  public isPageDetailLoaded
 
-  constructor() { }
+  constructor(private pokemonService:PokemonService) {
+    this.isPageDetailLoaded=pokemonService.getDetailsPokemon
+   }
 
   ngOnInit(): void {
   }

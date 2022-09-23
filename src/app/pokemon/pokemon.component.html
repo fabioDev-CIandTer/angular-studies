@@ -3,6 +3,11 @@
         <img src="assets/images/Logo.png" alt="">
         <h1>Pokedex</h1>
     </div>
-    <app-search-pokemon></app-search-pokemon>
-    <app-list [pokemons]="this.pokemonsList"></app-list>
+    
+    <ng-template [ngIf]="!this.isRouteDetailActive" >
+        <app-search-pokemon (buscaPokemonEventEmitter)="buscaPokemonByName($event)" ></app-search-pokemon>
+        <app-list [pokemons]="this.pokemonsList"></app-list>
+    </ng-template>
+    
+    <router-outlet></router-outlet>
 </div>

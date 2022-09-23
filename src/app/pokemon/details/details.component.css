@@ -1,0 +1,125 @@
+.container{
+    width: 100%;
+}
+
+.container > *:not(.names-container){
+    padding: 30px;
+}
+
+.card-detail-wrapper{
+    width: 100%;
+    background-color: #fff;
+    border-radius: 50px;
+    min-height: 500px;
+
+    justify-content: space-between;
+}
+.names-container{
+    align-items: flex-end;
+    padding: 30px 30px 10px 30px;
+}
+
+.names-container h1{
+    margin: 0;
+}
+
+.names-container h1:last-child{
+    position: absolute;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 70px;
+    color: rgba(255, 255, 255, 0.1);
+}
+
+.names-container h1:first-child{
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 38px;
+    color: #FFFFFF;
+    margin-top: 40px;
+}
+
+.img-wrapper{
+    height: fit-content;
+    margin-top: -150px;
+}
+
+.img-wrapper img{
+    width: 200px;
+    height: 200px;
+}
+
+.img-wrapper img:hover{
+    transform: scale(1.1);
+}
+
+.pokemon-data ul{
+    margin: 0;
+    padding: 0;
+}
+
+.pokemon-data{
+    flex: 3;
+}
+
+.pokemon-data li{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    list-style: none;
+    color: var(--pokemon-primary-color);
+    justify-content: space-between;
+}
+
+.pokemon-data li strong{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: right;
+    color: var(--pokemon-primary-color);
+}
+
+.pokemon-data h1{
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 38px;
+    text-decoration-line: underline;
+    color: var(--pokemon-secundary-color);
+}
+.voltar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--pokemon-secundary-color);
+    border-radius: 50px;
+    height: fit-content;
+}
+
+.voltar a{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 17px;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.voltar:hover {
+    transition: all 0.5s ease-in-out;
+    background: #be4258;
+}

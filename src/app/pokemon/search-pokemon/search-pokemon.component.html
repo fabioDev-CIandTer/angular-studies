@@ -1,4 +1,4 @@
 <div>
-    <input type="text"  placeholder="Buscar Pokemon...">
+    <input type="text" #input (keyup)="buscaPokemonEmitter(input.value)" placeholder="Buscar Pokemon...">
     <mat-icon class="search">search</mat-icon>
 </div>

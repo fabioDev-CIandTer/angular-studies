@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonModel } from './pokemon-model';
 
 @Component({
@@ -8,11 +9,18 @@ import { PokemonModel } from './pokemon-model';
 })
 export class CardComponent implements OnInit {
 
-  @Input() pokemon:PokemonModel={name:"", img:"", types:[]}
-  constructor() { }
+  @Input() pokemon:PokemonModel={id:"",name:"", img:"", types:[]}
+  
+  public pokemonDetails:any;
+
+  constructor(private router:Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.pokemon)
+    
+  }
+
+  goToDetailsPage(){
+    this.router.navigate(['details', this.pokemon.id], { relativeTo: this.route });
   }
 
 }
