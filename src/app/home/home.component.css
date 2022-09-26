@@ -87,6 +87,6 @@ li a{
 }
 
 
-a.active{
-    border-bottom: 2px solid var(--pokemon-secundary-color);
+li a.active{
+    color: #eb99a8;
 }
