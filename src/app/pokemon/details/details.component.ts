@@ -11,8 +11,12 @@ import { PokemonService } from '../pokemon.service';
 })
 export class DetailsComponent implements OnInit{
 
+  isLoading:boolean=false;
+
   constructor(private service:PokemonService,
-              private activatedRoute:ActivatedRoute) { }
+              private activatedRoute:ActivatedRoute) { 
+                
+              }
 
   ngOnInit(): void {
     this.showDetails();
@@ -29,6 +33,7 @@ export class DetailsComponent implements OnInit{
       {
         next: (res)=>{
           this.pokemonDetails = res
+          this.isLoading=true;
           console.log(this.pokemonDetails)
         },
         error:(err)=>{

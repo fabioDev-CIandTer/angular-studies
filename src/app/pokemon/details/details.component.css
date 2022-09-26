@@ -23,6 +23,22 @@
     margin: 0;
 }
 
+.names-container h1:first-child{
+    margin: 0;
+    animation-name: slideRightToLeft;
+    animation-duration: 2.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: none;
+}
+
+.names-container h1:last-child{
+    margin: 0;
+    animation-name: slideLeftToRight;
+    animation-duration: 2.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: none;
+}
+
 .names-container h1:last-child{
     position: absolute;
     font-family: 'Roboto';
@@ -51,6 +67,11 @@
 .img-wrapper img{
     width: 200px;
     height: 200px;
+
+    animation-name: slideIn;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: none;
 }
 
 .img-wrapper img:hover{
@@ -123,3 +144,27 @@
     transition: all 0.5s ease-in-out;
     background: #be4258;
 }
+
+@keyframes slideLeftToRight {
+    from {margin-right: -280px;}
+    to {margin-right: 0px;}
+}
+
+@keyframes slideRightToLeft {
+    from {margin-right: 280px;}
+    to {margin-right: 0px;}
+}
+
+@keyframes slideIn {
+    10% {position:absolute;top: 30px; transform: scale(0.5);}
+    30% {transform: scale(0.6);}
+    40% {transform: scale(0.7);}
+    50% {transform: scale(0.8);}
+    70% {transform: scale(0.9);}
+    80% {top: 130px;transform: scale(0.95);}
+    90% {top: 130px;transform: scale(0.98);}
+}
+
+
+
+
