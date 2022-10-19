@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {tap, map} from 'rxjs/operators'
+import { PokemonPayload, AllPokemonPropertiesModel } from './model/pokemon-model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,20 +15,12 @@ export class PokemonService {
     private httpClient: HttpClient
   ) { }
 
-  get apiListAllPokemons():Observable<any>{
-    return this.httpClient.get(this.baseUrl.concat('/?offset=0&limit=100'))
-      .pipe(
-        tap(res=>res),
-        tap((res:any) =>{
-          res.results.map((resPokemons:any)=>{
-              this.getDetailsPokemon(resPokemons.url).subscribe( res=> resPokemons.status = res)
-          });
-        })
-      )
+  apiListAllPokemons():Observable<PokemonPayload>{
+    return this.httpClient.get<PokemonPayload>(this.baseUrl.concat('/?offset=0&limit=100'))
   }
 
-  getDetailsPokemon(url:string):Observable<any>{
-    return this.httpClient.get(url).pipe( map( res=>res ) );
+  getDetailsPokemon(url:string):Observable<AllPokemonPropertiesModel>{
+    return this.httpClient.get<AllPokemonPropertiesModel>(url)
   }
 
   getDetail(id:string):Observable<any>{

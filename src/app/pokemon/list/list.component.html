@@ -1,11 +1,11 @@
 <div class="list-container">
     <ul>
-        <li *ngFor="let pokemon of pokemons" >
+        <li *ngFor="let pokemon of pokemons;let i =index" >
             <app-card 
-                [pokemon]="{id:pokemon?.status?.id, 
+                [pokemon]="{id:pokemon.id, 
                             name:pokemon.name, 
-                            img:pokemon.status?.sprites?.other.dream_world.front_default, 
-                            types:pokemon.status?.types}">
+                            img:pokemon.sprites.other.dream_world.front_default, 
+                            types:pokemon.types}">
             </app-card>
         </li>
     </ul>

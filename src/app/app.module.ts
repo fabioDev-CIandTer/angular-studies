@@ -12,6 +12,11 @@ import { PokemonComponent } from './pokemon/pokemon.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TodoListModule } from './todo-list/core/todo-list.module';
 import { HomeModule } from './home/core/home.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -30,6 +35,9 @@ import { HomeModule } from './home/core/home.module';
     HomeModule,
     TodoListModule,
     PokemonModule,
+    EffectsModule.forRoot([]),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [],
   bootstrap: [AppComponent]

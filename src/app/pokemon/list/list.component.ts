@@ -1,23 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-
-import { PokemonService } from '../pokemon.service';
-import { RawPokemonModel } from './../card/pokemon-model';
+import { AllPokemonPropertiesModel } from './../model/pokemon-model';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
 
-  @Input() pokemons:Array<RawPokemonModel>=[];
-  public isPageDetailLoaded
-
-  constructor(private pokemonService:PokemonService) {
-    this.isPageDetailLoaded=pokemonService.getDetailsPokemon
-   }
-
-  ngOnInit(): void {
-  }
-
+  @Input() pokemons:Array<AllPokemonPropertiesModel>  | undefined
+  
 }

@@ -1,9 +1,11 @@
+import { select, Store } from '@ngrx/store';
 import { NavigationEnd, Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
-import {filter, map} from 'rxjs/operators'
+import { filter, map} from 'rxjs/operators'
 import { PokemonService } from './pokemon.service';
-import { RawPokemonModel } from './card/pokemon-model';
-
+import { AllPokemonPropertiesModel } from './model/pokemon-model';
+import { AppState } from '../reducers';
+import { getPokemonDetailsList } from './store/pokemon.selectors';
 
 
 @Component({
@@ -13,10 +15,12 @@ import { RawPokemonModel } from './card/pokemon-model';
 })
 export class PokemonComponent implements OnInit {
 
-  @Input() pokemonsList:Array<RawPokemonModel>=[];
+  @Input() pokemonsList:any[]=[]
   @Input() isRouteDetailActive:boolean=false;
 
-  constructor(private service:PokemonService, private router:Router) {
+  private pokemonsListTT:AllPokemonPropertiesModel[]=[];
+
+  constructor(private service:PokemonService, private router:Router, private store:Store<AppState>) {
     this.router.events.pipe(
       filter((e): e is NavigationEnd => e instanceof NavigationEnd),
       map(e => {
@@ -31,28 +35,17 @@ export class PokemonComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    this.service.apiListAllPokemons.subscribe({
-      next: (v) => {
-        console.log(v)
-        this.pokemonsList = v.results
-      },
-      error: (e) => console.error(e),
-      complete: () => console.info(this.pokemonsList) 
-    });
-  }
+
+  this.store.pipe(select(getPokemonDetailsList)).subscribe({
+    next:(v)=> {
+      this.pokemonsList=v
+    }
+  })
+
+}
 
   buscaPokemonByName(event:string){
     console.log(event)
-    this.service.apiListAllPokemons.subscribe({
-      next: (v) =>{
-        this.pokemonsList = v.results.filter((pokemonObject:any)=>{ return (pokemonObject.name as string).includes(event)})
-      },
-      error:(e)=>{
-        console.log(e)
-      },
-      
-    })
   }
 
 }

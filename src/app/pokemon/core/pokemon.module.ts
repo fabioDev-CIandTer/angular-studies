@@ -7,6 +7,10 @@ import { SearchPokemonComponent } from '../search-pokemon/search-pokemon.compone
 import { CardComponent } from '../card/card.component';
 import { DetailsComponent } from '../details/details.component';
 import { PokemonRoutingModule } from './pokemon-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { PokemonEffects } from '../store/pokemon.effects';
+import {StoreModule} from '@ngrx/store'
+import { pokemonFeatureKey, reducer } from './../store/pokemon.reducer';
 
 
 
@@ -22,7 +26,9 @@ import { PokemonRoutingModule } from './pokemon-routing.module';
     CommonModule,
     AngularMaterialModule,
     RouterModule,
-    PokemonRoutingModule
+    PokemonRoutingModule,
+    EffectsModule.forFeature([PokemonEffects]),
+    StoreModule.forFeature(pokemonFeatureKey, reducer),
   ],
   exports:[
     ListComponent,
