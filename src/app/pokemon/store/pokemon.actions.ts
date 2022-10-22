@@ -12,9 +12,13 @@ export const getPokemonDataAction = createAction(
   props<{ paginacao?:number} >()
 );
 
-export const paginacaoActionLoaded = createAction(
-   '[Pokemon] Paginacao Action Loaded',
+export const paginacaoActionLoad = createAction(
+   '[Pokemon] Paginacao Action Load',
    props<{ paginacao:PaginacaoPayloadModel} >()
+);
+
+export const paginacaoActionLoaded = createAction(
+  '[Pokemon] Paginacao Action Loaded',
 );
 
 export const paginacaoActionError = createAction(
@@ -22,9 +26,13 @@ export const paginacaoActionError = createAction(
   props<{ error:any} >()
 );
 
-export const urlActionLoaded = createAction(
-   '[Pokemon] Url Action Loaded',
+export const urlActionLoad = createAction(
+   '[Pokemon] Url Action Load',
    props<{ url:UrlObjectModel[]} >()
+);
+
+export const urlActionLoaded = createAction(
+  '[Pokemon] Url Action Loaded',
 );
 
 export const urlActionError = createAction(
@@ -32,9 +40,13 @@ export const urlActionError = createAction(
   props<{ error:any} >()
 );
 
-export const listaActionLoaded = createAction(
-   '[Pokemon] Lista Action Loaded',
+export const listaActionLoad = createAction(
+   '[Pokemon] Lista Action Load',
    props<{ lista:AllPokemonPropertiesModel[]} >()
+);
+
+export const listaActionLoaded = createAction(
+  '[Pokemon] Lista Action Loaded',
 );
 
 export const listaActionError = createAction(

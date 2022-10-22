@@ -2,70 +2,58 @@
 import { createReducer, on } from '@ngrx/store';
 import { PokemonsActions } from './pokemon-types';
 import * as entity from './pokemon.entities';
+import{EntityState, createEntityAdapter, EntityAdapter} from '@ngrx/entity'
+import { StoreCompleteModel } from '../model/pokemon-model';
 
 
 
 export const pokemonFeatureKey = 'pokemon';
 
-export interface PokemonState {
-  paginacaoPayload:entity.PaginacaoState,
-  urlsPayload:{
-    loaded:boolean,
-    payload:entity.UrlsState,
-  },
-  listaPayload:entity.ListaState
+export interface PokemonState extends EntityState<StoreCompleteModel> {
+  isAllDataFetched:boolean
+  paginacao:entity.PaginacaoState,
+  url:entity.UrlsState,
+  lista:entity.ListaState,
 }
 
-export const initialPokemonState:PokemonState = {
-  paginacaoPayload:entity.paginacaoInitialState,
-  urlsPayload:{
-    loaded:false,
-    payload:entity.urlsInitialState,
-  },
-  listaPayload:entity.listaInitialState
-}
+export const pokemonStateAdapter: EntityAdapter<StoreCompleteModel> = createEntityAdapter({
+  selectId: (id) => id.id
+})
+
+export const pokemonInitialState: PokemonState = pokemonStateAdapter.getInitialState({
+  isAllDataFetched:false,
+  paginacao:entity.paginacaoInitialState,
+  url:entity.urlsInitialState,
+  lista:entity.listaInitialState
+});
 
 
 export const reducer = createReducer(
-  initialPokemonState, 
-  on(PokemonsActions.paginacaoActionLoaded, (state, {paginacao})=> ({
-    ...state,
-    paginacaoPayload:{
-        ...state.paginacaoPayload,
-
-        isPaginacaoFetched:true,
-        paginacaoPayload:entity.paginacaoStateAdapter.addOne(paginacao, state.paginacaoPayload)
-    }
-  })),
-
-  on(PokemonsActions.urlActionLoaded, (state,{url})=> ({
-    ...state,
-    urlsPayload:{
-      ...state.urlsPayload,
-      loaded:true,
-      isUrlFetched:true,
-      urlsPayload:entity.urlsStateAdapter.setAll(url, state.urlsPayload.payload), 
-    }
-  })),
-
-  on(PokemonsActions.listaActionLoaded, (state,action)=> ({
-    ...state,
-    listaPayload:{
-      ...state.listaPayload,
-      isListaFetched:true,
-      listaPayload:entity.listaStateAdapter.addMany(action.lista, state.listaPayload),
-    }
-  })),
-
-
-  on(PokemonsActions.fetchNewDataActionReset, (state,action)=> ({
-    ...state,
-    listaPayload:{
-      ...state.listaPayload,
-      
-      isListaFetched:false,
-    }
   
+  pokemonInitialState, 
+  on(PokemonsActions.paginacaoActionLoad, (state, action)=>{
+    return {...state, 
+            paginacao: entity.paginacaoStateAdapter.addOne(action.paginacao, {...state.paginacao, isPaginacaoFetched:true})
+          }
+  }),
+
+  on(PokemonsActions.urlActionLoad, (state, action)=>{
+    return {...state, 
+            url: entity.urlsStateAdapter.addMany(action.url, {...state.url, isUrlFetched:true})
+          }
+  }),
+
+  on(PokemonsActions.listaActionLoad, (state, action)=>{
+    return {...state, 
+            lista: entity.listaStateAdapter.addMany(action.lista, {...state.lista, isListaFetched:true})
+          }
+  }),
+
+  on(PokemonsActions.fetchNewDataActionReset, (state, action) =>({
+      ...state,
+      lista:{...state.lista, isListaFetched:false},
+      paginacao:{...state.paginacao, isPaginacaoFetched:false},
+      url:{...state.url, isUrlFetched:false}
   }))
 
 
@@ -73,16 +61,6 @@ export const reducer = createReducer(
 
 
 export const listaSelectors = entity.listaStateAdapter.getSelectors();
+export const pokemonSelectors= pokemonStateAdapter.getSelectors();
 
-
-
-
-// on(PokemonsActions.listaActionLoaded, (state,{lista})=> ({
-//   ...state,
-//   listaPayload:{
-//     ...state.listaPayload,
-//     isListaFetched:true,
-//     listaPayload:entity.listaStateAdapter.addMany(lista, state.listaPayload)
-//   }
-// }))
 

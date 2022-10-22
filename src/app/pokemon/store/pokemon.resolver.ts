@@ -21,11 +21,6 @@ export class PokemonResolver implements Resolve<any>{
                     this.store.dispatch(PokemonsActions.getPokemonDataAction({paginacao:0}))
                 }
             }),
-            // filter(paginacao=> !!paginacao.isPaginacaoFetched),
-            // first(),
-            // finalize(()=> {
-            //     console.log("fim")
-            // })
         )
     }
 

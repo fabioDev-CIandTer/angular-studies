@@ -1,5 +1,27 @@
-import { AllPokemonPropertiesModel, PaginacaoPayloadModel, UrlObjectModel} from './../model/pokemon-model';
-import { createEntityAdapter, Dictionary, EntityAdapter, EntityState } from '@ngrx/entity';
+import { AllPokemonPropertiesModel, PaginacaoPayloadModel, StoreCompleteModel, UrlObjectModel} from './../model/pokemon-model';
+import { createEntityAdapter,  EntityAdapter, EntityState } from '@ngrx/entity';
+
+
+
+export interface PokemonState extends EntityState<StoreCompleteModel> {
+    isAllDataFetched:boolean
+    paginacao:PaginacaoState | undefined,
+    url:UrlsState | undefined,
+    lista:ListaState | undefined,
+    
+}
+
+export const pokemonStateAdapter: EntityAdapter<StoreCompleteModel> = createEntityAdapter({
+    selectId: (id) => id.id
+})
+
+export const pokemonInitialState: PokemonState = pokemonStateAdapter.getInitialState({
+    isAllDataFetched:false,
+    paginacao:undefined,
+    url:undefined,
+    lista:undefined
+});
+
 
 
 

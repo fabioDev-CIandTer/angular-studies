@@ -41,3 +41,10 @@ export interface PaginacaoPayloadModel{
 export interface ApiFirstPayloadModel extends PaginacaoPayloadModel{
     results:UrlObjectModel[]
 }
+
+export interface StoreCompleteModel {
+    id:number,
+    paginacao:PaginacaoPayloadModel,
+    lista: AllPokemonPropertiesModel,
+    urls:UrlObjectModel,
+}

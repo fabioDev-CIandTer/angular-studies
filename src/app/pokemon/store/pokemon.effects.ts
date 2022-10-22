@@ -24,28 +24,30 @@ export class PokemonEffects {
         {
           debugger;
           this.store.dispatch(
-            PokemonsActions.paginacaoActionLoaded(
+            PokemonsActions.paginacaoActionLoad(
               {paginacao: {count:paginacao.count, next:paginacao.next,previous:paginacao.previous}}
             ) 
           )
           return paginacao
         }
       ),
-      map(paginacao=> PokemonsActions.urlActionLoaded({url:paginacao.results})),
+      map(paginacao=> PokemonsActions.urlActionLoad({url:paginacao.results})),
     )
   )
 
   urlsFetchActionEffect = createEffect(
     ()=> 
+    
      this.actions$.pipe(
-      ofType(PokemonsActions.urlActionLoaded),
+      ofType(PokemonsActions.urlActionLoad),
+      tap(_action => this.listaPokemons=[]),
         map(urlsArray=> 
           urlsArray.url.map(
             urlObject=> this.service.getDetailsPokemon(urlObject.url).subscribe({
               next:(v)=> this.listaPokemons.push(v),
               complete:()=>{
                 if(this.listaPokemons.length==urlsArray.url.length){
-                  this.store.dispatch(PokemonsActions.listaActionLoaded({lista:this.listaPokemons}))
+                  this.store.dispatch(PokemonsActions.listaActionLoad({lista:this.listaPokemons}))
                 }
               }
             })

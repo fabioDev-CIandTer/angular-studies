@@ -1,6 +1,6 @@
 import { PaginacaoState, UrlsState, ListaState } from './pokemon.entities';
-import { listaSelectors, pokemonFeatureKey, PokemonState } from './pokemon.reducer';
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { pokemonFeatureKey, PokemonState } from './pokemon.reducer';
+import { createFeatureSelector, createSelector, props } from '@ngrx/store';
 
 
 export const selectorPokemonState = createFeatureSelector<PokemonState>(pokemonFeatureKey);
@@ -20,7 +20,19 @@ export const selectUrl = createSelector(
 
 export const selectLista = createSelector(
     selectorPokemonState,
-    lista=> lista.listaPayload
+    pokemon=> pokemon.lista
+)
+
+export const selectIsDataResetedForMoreLoad = createSelector(
+    selectorPokemonState,
+    (pokemon)=>{ 
+        return [pokemon.lista.isListaFetched, pokemon.url.isUrlFetched, pokemon.paginacao.isPaginacaoFetched]
+    }
+)
+
+export const selectByName = (props: {name:string}) => createSelector(
+    selectorPokemonState,
+    (pokemon)=> Object.values(pokemon.lista.entities).filter(pokemon=> pokemon?.name.includes(props.name))
 )
 
 
