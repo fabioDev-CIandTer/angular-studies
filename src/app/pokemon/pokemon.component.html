@@ -6,7 +6,18 @@
     
     <ng-template [ngIf]="!this.isRouteDetailActive" >
         <app-search-pokemon (buscaPokemonEventEmitter)="buscaPokemonByName($event)" ></app-search-pokemon>
+        <div class="loading-container" *ngIf="this.loading">
+            <mat-progress-bar  defaultColor="primary" mode="indeterminate"></mat-progress-bar>
+        </div>
         <app-list [pokemons]="this.pokemonsList"></app-list>
+
+        <div class="paginator-container" *ngIf="!this.loading">
+            <mat-paginator [length]="1000"
+               [pageSize]="100"
+               (page)="getPaginatorData($event)"
+               aria-label="Select page">
+            </mat-paginator>
+        </div>
     </ng-template>
     
     <router-outlet></router-outlet>

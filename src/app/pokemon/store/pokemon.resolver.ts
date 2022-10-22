@@ -1,4 +1,4 @@
-import { getUrlsPokemonDetails, selectFirstFetch } from './pokemon.selectors';
+import { selectPaginacao } from './pokemon.selectors';
 import { select, Store } from '@ngrx/store';
 import { tap, filter, first, finalize } from 'rxjs';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
@@ -9,28 +9,23 @@ import { PokemonsActions } from './pokemon-types';
 @Injectable()
 export class PokemonResolver implements Resolve<any>{
 
-    private loading=false;
+    private primeiroCarregamento=false;
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    
+    debugger
         return this.store.pipe(
-            select(selectFirstFetch),
-            tap((pokemonsFetched)=>{
-                if(!pokemonsFetched.isMetaDataFetched && !this.loading){
-                    this.loading=true;
-                    this.store.dispatch(PokemonsActions.pokemonAction())
+            select(selectPaginacao),
+            tap((paginacao)=>{
+                if(!paginacao.isPaginacaoFetched && !this.primeiroCarregamento){
+                    this.primeiroCarregamento=true;
+                    this.store.dispatch(PokemonsActions.getPokemonDataAction({paginacao:0}))
                 }
             }),
-            filter(pokemonsFetched=> !!pokemonsFetched.isMetaDataFetched),
-            first(),
-            finalize(()=> {
-                this.loading=false
-                this.store.pipe(select(getUrlsPokemonDetails)).subscribe({
-                    next:(v)=>{
-                        this.store.dispatch(PokemonsActions.pokemonActionGetDetails({urlObject:v}))
-                    }
-                })
-            })
+            // filter(paginacao=> !!paginacao.isPaginacaoFetched),
+            // first(),
+            // finalize(()=> {
+            //     console.log("fim")
+            // })
         )
     }
 

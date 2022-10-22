@@ -36,7 +36,16 @@ import { EffectsModule } from '@ngrx/effects';
     TodoListModule,
     PokemonModule,
     EffectsModule.forRoot([]),
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, 
+      { metaReducers,
+          runtimeChecks:{
+            strictStateImmutability:true,
+            strictActionImmutability:true,
+            strictActionSerializability:true,
+            strictStateSerializability:true
+          }
+      }
+    ),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [],

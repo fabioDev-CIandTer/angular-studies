@@ -2,7 +2,12 @@ export interface PokemonCardModel {
     id:string,
     name:string,
     img:string,
-    types:Array<{slot:number, type:{name:string, url:string}}>,
+    types:Array<{slot:number, type:UrlObjectModel}>,
+}
+
+export interface UrlObjectModel{
+    name:string, 
+    url:string
 }
 
 export interface AllPokemonPropertiesModel{
@@ -27,10 +32,12 @@ export interface AllPokemonPropertiesModel{
     url:any,
 }
 
-export interface PokemonPayload{
+export interface PaginacaoPayloadModel{
     count: number,
     next?: string,
     previous?: string,
-    results: {name:string, url:string}[],
-    pokemonsDetails?:AllPokemonPropertiesModel[]
+}
+
+export interface ApiFirstPayloadModel extends PaginacaoPayloadModel{
+    results:UrlObjectModel[]
 }

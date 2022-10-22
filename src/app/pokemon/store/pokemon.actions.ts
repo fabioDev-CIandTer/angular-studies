@@ -1,32 +1,52 @@
-import { AllPokemonPropertiesModel } from './../model/pokemon-model';
+import { UrlObjectModel, AllPokemonPropertiesModel, ApiFirstPayloadModel, PaginacaoPayloadModel } from './../model/pokemon-model';
 import { createAction, props } from '@ngrx/store';
-import { PokemonPayload } from '../model/pokemon-model';
 
-export const pokemonAction = createAction(
-  '[Pokemon] Pokemon Pokemons'
+
+export const fetchNewDataActionReset = createAction(
+  '[Pokemon] Action Reset',
+)
+
+
+export const getPokemonDataAction = createAction(
+  '[Pokemon] Paginacao Action',
+  props<{ paginacao?:number} >()
 );
 
-export const pokemonActionSuccess = createAction(
-  '[Pokemon] Pokemon Action Success',
-  props<{ data: PokemonPayload }>()
+export const paginacaoActionLoaded = createAction(
+   '[Pokemon] Paginacao Action Loaded',
+   props<{ paginacao:PaginacaoPayloadModel} >()
 );
 
-export const pokemonActionGetDetails= createAction(
-  '[Pokemon] Pokemon Action Get Details',
-  props<{ urlObject: {url:string, name:string}[]  }>()
+export const paginacaoActionError = createAction(
+  '[Pokemon] Paginacao Action Error',
+  props<{ error:any} >()
 );
 
-export const addPokemonAction= createAction(
-  '[Pokemon] Add Pokemon Action',
-  props<{ pokemonData:AllPokemonPropertiesModel }>()
+export const urlActionLoaded = createAction(
+   '[Pokemon] Url Action Loaded',
+   props<{ url:UrlObjectModel[]} >()
 );
 
-export const addPokemonsDetails= createAction(
-  '[Pokemon] Add Pokemon To List Action',
-  props<{ pokemonData:AllPokemonPropertiesModel[] }>()
+export const urlActionError = createAction(
+  '[Pokemon] Url Action Error',
+  props<{ error:any} >()
 );
 
-export const pokemonActionFailure = createAction(
-  '[Pokemon] Pokemon Pokemons Failure',
-  props<{ error: any }>()
+export const listaActionLoaded = createAction(
+   '[Pokemon] Lista Action Loaded',
+   props<{ lista:AllPokemonPropertiesModel[]} >()
 );
+
+export const listaActionError = createAction(
+  '[Pokemon] Lista Action Error',
+  props<{ error:any} >()
+);
+
+
+
+
+
+
+
+
+

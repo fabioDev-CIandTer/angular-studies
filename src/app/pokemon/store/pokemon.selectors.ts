@@ -1,25 +1,26 @@
-import { AllPokemonPropertiesModel } from './../model/pokemon-model';
-import { pokemonFeatureKey, PokemonState, selectAll } from './pokemon.reducer';
+import { PaginacaoState, UrlsState, ListaState } from './pokemon.entities';
+import { listaSelectors, pokemonFeatureKey, PokemonState } from './pokemon.reducer';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { PokemonsListaState } from './pokemon.entities';
 
-export const selectorPokemonsState = createFeatureSelector<PokemonState>(pokemonFeatureKey);
-export const selectorPokemonsListaState = createFeatureSelector<PokemonsListaState>(pokemonFeatureKey);
 
-export const selectFirstFetch = createSelector(
-    selectorPokemonsState,
-    (pokemons)=>pokemons.data.meta
+export const selectorPokemonState = createFeatureSelector<PokemonState>(pokemonFeatureKey);
+export const selectorPaginacaoState = createFeatureSelector<PaginacaoState>(pokemonFeatureKey);
+export const selectorUrlState = createFeatureSelector<UrlsState>(pokemonFeatureKey);
+export const selectorListaState = createFeatureSelector<ListaState>(pokemonFeatureKey);
+
+export const selectPaginacao = createSelector(
+    selectorPaginacaoState,
+    paginacao => paginacao
 )
 
-export const getUrlsPokemonDetails = createSelector(
-    selectFirstFetch,
-    (pokemons)=>{
-        const id = pokemons.pokemonMetaPayload.ids[0]
-        return pokemons.pokemonMetaPayload.entities[id]?.results as {name:string, url:string}[]
-    }
+export const selectUrl = createSelector(
+    selectorUrlState,
+    url => url
 )
 
-export const getPokemonDetailsList = createSelector(
-    selectorPokemonsState,
-    (list)=> Object.values(list.data.lista.pokemonListaPayload.entities)
+export const selectLista = createSelector(
+    selectorPokemonState,
+    lista=> lista.listaPayload
 )
+
+

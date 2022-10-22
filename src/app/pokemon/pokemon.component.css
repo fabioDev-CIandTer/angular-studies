@@ -40,6 +40,32 @@ img{
     color: #FFFFFF;
 }
 
+.mat-progress-bar {
+    width: 85%;
+}
+
+.loading-container{
+    margin: 12px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.paginator-container{
+    margin:15px 0;
+}
+
+
+.mat-paginator {
+    border-radius: 10px;
+}
+
+::ng-deep .mat-progress-bar-secondary.mat-progress-bar-fill.mat-progress-bar-element::after {
+    background-color:var(--pokemon-secundary-color)!important;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: rgb(241, 135, 135)!important;
+}
 
 @keyframes backgroundTransition {
     10%   {background-color:#D8D2CB;}

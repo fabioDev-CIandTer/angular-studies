@@ -1,38 +1,47 @@
-import { AllPokemonPropertiesModel } from './../model/pokemon-model';
-import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { PokemonPayload } from '../model/pokemon-model';
+import { AllPokemonPropertiesModel, PaginacaoPayloadModel, UrlObjectModel} from './../model/pokemon-model';
+import { createEntityAdapter, Dictionary, EntityAdapter, EntityState } from '@ngrx/entity';
 
 
-export interface PokemonsMetaDataState extends EntityState<PokemonPayload> {
-    pokemonMetaPayload: PokemonPayload | null;
+
+export interface PaginacaoState extends EntityState<PaginacaoPayloadModel> {
+    isPaginacaoFetched:boolean
 }
 
-export const pokemonsMetaDataAdapter: EntityAdapter<PokemonPayload> = createEntityAdapter(
-    {
-        selectId: (id) => id.count,
-    }
-);
+export const paginacaoStateAdapter: EntityAdapter<PaginacaoPayloadModel> = createEntityAdapter({
+    selectId: (id) => id.count
+})
 
-export const pokemonsMetaDataInitialState: PokemonsMetaDataState = pokemonsMetaDataAdapter.getInitialState(
-    {
-        pokemonMetaPayload:null
-    }
-);
+export const paginacaoInitialState: PaginacaoState = paginacaoStateAdapter.getInitialState({
+    isPaginacaoFetched:false
+});
 
+/* ----------------------------------------------------------------------------------------------------- */
 
-
-export interface PokemonsListaState extends EntityState<AllPokemonPropertiesModel> {
-    pokemonListaPayload: AllPokemonPropertiesModel[] | null;
+export interface UrlsState extends EntityState<UrlObjectModel> {
+    isUrlFetched:boolean
 }
 
-export const pokemonsListaAdapter: EntityAdapter<AllPokemonPropertiesModel> = createEntityAdapter(
-    {
-        selectId: (pokemonLista) => pokemonLista.id,
-    }
-);
+export const urlsStateAdapter: EntityAdapter<UrlObjectModel> = createEntityAdapter({
+    selectId: (id) => id.name,
+});
 
-export const pokemonsListaInitialState: PokemonsListaState = pokemonsListaAdapter.getInitialState(
-    {
-        pokemonListaPayload:[]
-    }
-);
+export const urlsInitialState: UrlsState = urlsStateAdapter.getInitialState({
+    isUrlFetched:false
+});
+
+
+/* ----------------------------------------------------------------------------------------------------- */
+
+
+export interface ListaState extends EntityState<AllPokemonPropertiesModel> {
+    isListaFetched:boolean,
+}
+
+export const listaStateAdapter: EntityAdapter<AllPokemonPropertiesModel> = createEntityAdapter({
+    selectId: (pokemonLista) => pokemonLista.id
+});
+
+export const listaInitialState: ListaState = listaStateAdapter.getInitialState({
+    isListaFetched:false
+});
+

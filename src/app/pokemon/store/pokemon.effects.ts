@@ -1,12 +1,12 @@
+
 import { AllPokemonPropertiesModel } from './../model/pokemon-model';
-import { concatMap, finalize, first, map, tap } from 'rxjs';
+import { concatMap,map, tap } from 'rxjs';
 import { PokemonService } from './../pokemon.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { PokemonsActions } from './pokemon-types';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/reducers';
-import { getUrlsPokemonDetails, selectFirstFetch } from './pokemon.selectors';
 
 
 
@@ -15,39 +15,48 @@ export class PokemonEffects {
 
   private listaPokemons:AllPokemonPropertiesModel[]=[]
 
-  payloadPokemons = createEffect(
+  paginacaoActionEffect = createEffect(
     ()=> 
      this.actions$.pipe(
-      ofType(PokemonsActions.pokemonAction),
-      concatMap(_action => this.pokemonService.apiListAllPokemons()),
-      map(pokemons=> PokemonsActions.pokemonActionSuccess({data:pokemons}) )
-      
+      ofType(PokemonsActions.getPokemonDataAction),
+      concatMap(action => this.service.apiListAllPokemons(action.paginacao)),
+      tap(paginacao=> 
+        {
+          debugger;
+          this.store.dispatch(
+            PokemonsActions.paginacaoActionLoaded(
+              {paginacao: {count:paginacao.count, next:paginacao.next,previous:paginacao.previous}}
+            ) 
+          )
+          return paginacao
+        }
+      ),
+      map(paginacao=> PokemonsActions.urlActionLoaded({url:paginacao.results})),
     )
   )
 
-  payloadPokemonsDetails = createEffect(
+  urlsFetchActionEffect = createEffect(
     ()=> 
      this.actions$.pipe(
-      ofType(PokemonsActions.pokemonActionGetDetails),
-      concatMap(_action => this.store.pipe(select(getUrlsPokemonDetails))),
-      map(pokemonData => 
-          pokemonData.map(urlObj=>{
-            this.pokemonService.getDetailsPokemon(urlObj.url).subscribe({
+      ofType(PokemonsActions.urlActionLoaded),
+        map(urlsArray=> 
+          urlsArray.url.map(
+            urlObject=> this.service.getDetailsPokemon(urlObject.url).subscribe({
               next:(v)=> this.listaPokemons.push(v),
               complete:()=>{
-                if(this.listaPokemons.length==pokemonData.length){
-                    this.store.dispatch(PokemonsActions.addPokemonsDetails({pokemonData:this.listaPokemons}))
+                if(this.listaPokemons.length==urlsArray.url.length){
+                  this.store.dispatch(PokemonsActions.listaActionLoaded({lista:this.listaPokemons}))
                 }
               }
             })
-          })
-      ),
-    ), {dispatch:false}
-  )
+          )
+        )
+  ), {dispatch:false} )
 
 
 
   constructor(private actions$: Actions,
     private store:Store<AppState>,
-    private pokemonService:PokemonService) {}
+    private service:PokemonService) {}
 }
+
